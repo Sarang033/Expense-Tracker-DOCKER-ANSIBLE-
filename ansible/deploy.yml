@@ -1,0 +1,44 @@
+# File: ansible/deploy.yml
+---
+- name: Deploy Expense Tracker
+  hosts: webservers
+  become: yes
+  vars:
+    frontend_image: "{{ lookup('env', 'DOCKERHUB_USERNAME') }}/expense-tracker-frontend:latest"
+    backend_image: "{{ lookup('env', 'DOCKERHUB_USERNAME') }}/expense-tracker-backend:latest"
+
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Create project directory
+      file:
+        path: /opt/expense-tracker
+        state: directory
+
+    - name: Copy Docker Compose file
+      template:
+        src: docker-compose.yml.j2
+        dest: /opt/expense-tracker/docker-compose.yml
+
+    - name: Pull latest Docker images
+      docker_image:
+        name: "{{ item }}"
+        source: pull
+        force_source: yes
+      loop:
+        - "{{ frontend_image }}"
+        - "{{ backend_image }}"
+
+    - name: Run Docker Compose
+      docker_compose:
+        project_src: /opt/expense-tracker
+        state: present
