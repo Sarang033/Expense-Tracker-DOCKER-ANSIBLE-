@@ -14,4 +14,4 @@ services:
       - "5001:5001"
     environment:
       - MONGO_URI={{ lookup('env', 'MONGO_URI') }}
-      - SESSION_SECRET={{ lookup('env', 'SESSION_SECRET') }}
+      - JWT_SECRET={{ lookup('env', 'JWT_SECRET') }}
