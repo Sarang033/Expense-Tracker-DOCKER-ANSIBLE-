@@ -64,7 +64,7 @@ jobs:
         ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
     - name: Deploy to server
       env:
-        ANSIBLE_HOST_KEY_CHECKING: False
+        ANSIBLE_HOST_KEY_CHECKING: Falsed
       run: |
         cd ansible
         ansible-playbook -i inventory.ini deploy.yml
