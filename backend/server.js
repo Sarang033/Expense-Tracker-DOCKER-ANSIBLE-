@@ -9,9 +9,7 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors({
-  origin: 'http://43.204.228.17:80' 
-}));
+app.use(cors());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
