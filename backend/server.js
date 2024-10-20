@@ -10,7 +10,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'http://43.204.228.17' 
+  origin: 'http://43.204.228.17:80' 
 }));
 app.use(express.json());
 
