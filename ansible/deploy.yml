@@ -2,8 +2,8 @@
   hosts: webservers
   become: yes
   vars:
-    frontend_image: "{{ lookup('env', 'DOCKERHUB_USERNAME') }}/expense-tracker-frontend:latest"
-    backend_image: "{{ lookup('env', 'DOCKERHUB_USERNAME') }}/expense-tracker-backend:latest"
+    frontend_image: "sarang033/expense-tracker-frontend:latest"
+    backend_image: "sarang033/expense-tracker-backend:latest"
 
   tasks:
     - name: Install Docker
