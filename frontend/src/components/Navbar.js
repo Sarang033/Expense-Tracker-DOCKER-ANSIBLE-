@@ -15,7 +15,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-red-800 shadow-md">
+    <nav className="bg-gray-800 shadow-md">
       <div className="container mx-auto flex justify-between items-center p-4">
         <Link to="/" className="text-white text-2xl font-bold hover:text-gray-300 transition">
           Expense Tracker
