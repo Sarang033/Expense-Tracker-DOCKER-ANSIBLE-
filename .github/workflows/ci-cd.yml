@@ -29,8 +29,6 @@ jobs:
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
-    env:
-    REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }} 
     steps:
     - uses: actions/checkout@v3
     - name: Login to DockerHub
