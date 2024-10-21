@@ -5,15 +5,15 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
-
+import { protect } from './middleware/authMiddleware';
 
 dotenv.config();
 
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000' 
-})); 
+  origin: process.env.FRONTEND_URL || 'http://15.206.185.251'
+}));
 
 app.use(express.json());
 
@@ -28,7 +28,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 app.use('/api/auth', authRoutes);
-app.use('/api/expenses', expenseRoutes);
+app.use('/api/expenses', protect, expenseRoutes);
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
