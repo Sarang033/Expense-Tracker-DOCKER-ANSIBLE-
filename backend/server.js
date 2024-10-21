@@ -8,10 +8,8 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}));
+app.options('*', cors()); // Enable preflight for all routes
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
