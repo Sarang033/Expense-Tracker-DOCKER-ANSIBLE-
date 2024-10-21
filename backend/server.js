@@ -12,7 +12,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://15.206.185.251'
+  origin: process.env.FRONTEND_URL || 'http://15.206.185.251',
+  methods: ['GET', 'POST'] 
 }));
 
 app.use(express.json());
