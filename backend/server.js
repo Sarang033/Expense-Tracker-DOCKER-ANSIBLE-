@@ -3,12 +3,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const authRoutes = require('./routes/authRoutes');
+const expenseRoutes = require('./routes/expenseRoutes');
+
 
 dotenv.config();
 
 const app = express();
 
-app.options('*', cors()); // Enable preflight for all routes
+app.use(cors({
+  origin: 'http://15.206.185.251:80' 
+})); 
 
 app.use(express.json());
 
@@ -21,8 +26,6 @@ mongoose.connect(process.env.MONGO_URI)
   });
 
 
-const authRoutes = require('./routes/authRoutes');
-const expenseRoutes = require('./routes/expenseRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expenseRoutes);
