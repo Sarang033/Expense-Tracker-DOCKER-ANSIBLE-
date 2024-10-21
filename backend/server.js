@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'http://15.206.185.251:80' 
+  origin: 'http://15.206.185.251' 
 })); 
 
 app.use(express.json());
